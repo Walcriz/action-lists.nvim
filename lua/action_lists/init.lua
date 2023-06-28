@@ -16,7 +16,7 @@ end
 ---@param other_table table
 local function insert_all(table, other_table)
 	for key, value in pairs(other_table) do
-		table.insert(table, key, value)
+		table[key] = value
 	end
 end
 
@@ -34,7 +34,7 @@ local function select_action(actions)
 			return
 		end
 
-		vim.cmd(actions[action_info.key])
+		vim.cmd(tostring(actions[action_info.key]))
 	end)
 end
 
@@ -62,7 +62,7 @@ local function custom_kind(opts, defaults, items)
 		local key = item.key
 		local command = key.command
 
-		command_width = math.max(command_width, vim.api.nvim_strwidth(command))
+		command_width = math.max(command_width, vim.api.nvim_strwidth(tostring(command)))
 		text_width = math.max(text_width, vim.api.nvim_strwidth(text))
 		idx_width = math.max(idx_width, vim.api.nvim_strwidth(tostring(idx)))
 
