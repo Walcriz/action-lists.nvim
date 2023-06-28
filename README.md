@@ -1,6 +1,9 @@
 # Action lists
 
-A simple plugin which will allow you to have groups of actions that can be dynamic based on filetype
+A simple plugin which will allow you to have groups of actions that can be dynamic based on filetypes
+
+## Soft dependencies
+[Dressing](https://github.com/stevearc/dressing.nvim) and [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
 ## Simple setup
 ```lua
