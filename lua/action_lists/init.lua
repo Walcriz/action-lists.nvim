@@ -60,7 +60,7 @@ local function custom_kind(opts, defaults, items)
 	for idx, item in ipairs(items) do
 		local text = opts.format_item(item.key)
 		local key = item.key
-		local command = key.command
+		local command = item.command
 
 		command_width = math.max(command_width, vim.api.nvim_strwidth(command))
 		text_width = math.max(text_width, vim.api.nvim_strwidth(text))
@@ -127,7 +127,7 @@ function M.open(list_name)
 
 	local actions = list.actions
 
-	if actions == nil then
+	if actions == nil or not actions then
 		actions = {}
 
 		local filetype = vim.bo.filetype
