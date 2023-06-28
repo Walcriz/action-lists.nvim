@@ -3,10 +3,10 @@
 local function get_action_infos(actions)
 	local action_infos = {}
 	for key, action in pairs(actions) do
-		action_infos[key] = {
+		table.insert(action_infos, {
 			key = key,
 			command = action,
-		}
+		})
 	end
 	return action_infos
 end
@@ -47,7 +47,7 @@ local function custom_kind(opts, defaults, items)
 	local function make_display(entry)
 		local columns = {
 			{ entry.idx .. ":", "TelescopePromptPrefix" },
-			entry.key,
+			entry.text,
 			{ entry.command, "Comment" },
 		}
 		return displayer(columns)
@@ -55,21 +55,24 @@ local function custom_kind(opts, defaults, items)
 
 	local entries = {}
 	local command_width = 1
-	local key_width = 1
+	local text_width = 1
 	local idx_width = 1
 	for idx, item in ipairs(items) do
+		local text = opts.format_item(item.key)
 		local key = item.key
 		local command = key.command
 
 		command_width = math.max(command_width, vim.api.nvim_strwidth(command))
-		key_width = math.max(key_width, vim.api.nvim_strwidth(key))
+		text_width = math.max(text_width, vim.api.nvim_strwidth(text))
 		idx_width = math.max(idx_width, vim.api.nvim_strwidth(tostring(idx)))
 
 		table.insert(entries, {
 			idx = idx,
 			display = make_display,
 			key = key,
-			ordinal = idx .. " " .. key .. " " .. command,
+			text = text,
+			ordinal = idx .. " " .. text .. " " .. command,
+			command = command,
 			value = item,
 		})
 	end
@@ -77,7 +80,7 @@ local function custom_kind(opts, defaults, items)
 		separator = " ",
 		items = {
 			{ width = idx_width + 1 },
-			{ width = key_width },
+			{ width = text_width },
 			{ width = command_width },
 		},
 	})
