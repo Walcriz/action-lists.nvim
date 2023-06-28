@@ -34,7 +34,7 @@ local function select_action(actions)
 			return
 		end
 
-		vim.cmd(tostring(actions[action_info.key]))
+		vim.cmd(actions[action_info.key])
 	end)
 end
 
@@ -62,7 +62,7 @@ local function custom_kind(opts, defaults, items)
 		local key = item.key
 		local command = key.command
 
-		command_width = math.max(command_width, vim.api.nvim_strwidth(tostring(command)))
+		command_width = math.max(command_width, vim.api.nvim_strwidth(command))
 		text_width = math.max(text_width, vim.api.nvim_strwidth(text))
 		idx_width = math.max(idx_width, vim.api.nvim_strwidth(tostring(idx)))
 
@@ -133,7 +133,7 @@ function M.open(list_name)
 		local filetype = vim.bo.filetype
 
 		---@diagnostic disable-next-line: unused-local
-		for group, opts in pairs(actions) do
+		for group, opts in pairs(list) do
 			local fts = opts.ft
 			local group_actions = opts.actions or {}
 
