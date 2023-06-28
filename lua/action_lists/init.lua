@@ -58,7 +58,7 @@ local function custom_kind(opts, defaults, items)
 	local text_width = 1
 	local idx_width = 1
 	for idx, item in ipairs(items) do
-		local text = opts.format_item(item.key)
+		local text = opts.format_item(item)
 		local key = item.key
 		local command = item.command
 
