@@ -30,7 +30,7 @@ local function select_action(actions)
 			return action_info.key
 		end,
 	}, function(action_info)
-		if action_info then
+		if action_info == nil then
 			return
 		end
 
