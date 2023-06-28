@@ -1,13 +1,23 @@
 -- Private
 
 local function get_action_infos(actions)
-	local action_infos = {}
+	local keys = {}
 	for key, action in pairs(actions) do
+		table.insert(keys, key)
+	end
+
+	table.sort(keys, function(a, b)
+		return a:upper() < b:upper()
+	end)
+
+	local action_infos = {}
+	for index, key in ipairs(keys) do
 		table.insert(action_infos, {
 			key = key,
-			command = action,
+			command = actions[key],
 		})
 	end
+
 	return action_infos
 end
 
