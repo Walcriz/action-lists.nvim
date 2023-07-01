@@ -40,4 +40,7 @@ require("action_lists").setup({
 ## Open an action list
 ```vim
 :OpenActionList <list>
+
+" For example
+:OpenActionList simple
 ```
