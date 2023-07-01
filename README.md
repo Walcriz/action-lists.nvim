@@ -5,7 +5,7 @@ A simple plugin that offers a straightforward solution to create groups of actio
 ## Soft dependencies
 [Dressing](https://github.com/stevearc/dressing.nvim) and [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
-## Simple setup
+## Setup
 ```lua
 require("action_lists").setup({
     lists = {
@@ -16,14 +16,7 @@ require("action_lists").setup({
                 lua = 'lua print("From lua!")',
             },
         },
-    },
-})
-```
 
-## Full setup example
-```lua
-require("action_lists").setup({
-    lists = {
         multiple = { -- A dynamic action list that contains sub lists
             all = { -- Sub list that can be used from any file
                 actions = {
@@ -38,12 +31,6 @@ require("action_lists").setup({
                     -- You can also have actions with spaces in them
                     ["Action with space"] = 'echo "Action with space"',
                 },
-            },
-        },
-
-        simple = { -- A simple list of actions that can be used from any file
-            actions = {
-                test = 'echo "test"',
             },
         },
     },
