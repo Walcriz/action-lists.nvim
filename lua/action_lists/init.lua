@@ -71,6 +71,9 @@ local function custom_kind(opts, defaults, items)
 		local text = opts.format_item(item)
 		local key = item.key
 		local command = item.command
+		if type(command) == "function" then
+			command = "function() ... end"
+		end
 
 		command_width = math.max(command_width, vim.api.nvim_strwidth(command))
 		text_width = math.max(text_width, vim.api.nvim_strwidth(text))
