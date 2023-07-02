@@ -44,6 +44,12 @@ local function select_action(actions)
 			return
 		end
 
+		local action = actions[action_info.key]
+		if type(action) == "function" then
+			action()
+			return
+		end
+
 		vim.cmd(actions[action_info.key])
 	end)
 end
@@ -71,6 +77,9 @@ local function custom_kind(opts, defaults, items)
 		local text = opts.format_item(item)
 		local key = item.key
 		local command = item.command
+		if type(command) == "function" then
+			command = "function() ... end"
+		end
 
 		command_width = math.max(command_width, vim.api.nvim_strwidth(command))
 		text_width = math.max(text_width, vim.api.nvim_strwidth(text))
@@ -108,7 +117,7 @@ local M = {}
 
 local lists = nil
 
---- @alias action_list { [string]: string }
+--- @alias action_list { [string]: string | function }
 
 ---Setup action lists
 ---@param opts { lists: { [string]: { actions: action_list } | { [string]: { actions: action_list, ft: string | nil }}}}

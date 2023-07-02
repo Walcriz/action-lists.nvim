@@ -14,6 +14,13 @@ require("action_lists").setup({
                 test = 'echo "test"',
                 tsupdate = 'TSUpdate',
                 lua = 'lua print("From lua!")',
+
+                func = function() -- Action Lists also supports functions
+                    print("Hello from a function")
+                end,
+
+                -- You can also have actions with spaces in them
+                ["Action with space"] = 'echo "Action with space"',
             },
         },
 
@@ -27,9 +34,6 @@ require("action_lists").setup({
                 ft = { "go" },
                 actions = {
                     run = 'lua print("This can only be ran from go files!")',
-
-                    -- You can also have actions with spaces in them
-                    ["Action with space"] = 'echo "Action with space"',
                 },
             },
         },
