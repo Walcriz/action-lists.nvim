@@ -44,6 +44,12 @@ local function select_action(actions)
 			return
 		end
 
+		local action = actions[action_info.key]
+		if type(action) == "function" then
+			action()
+			return
+		end
+
 		vim.cmd(actions[action_info.key])
 	end)
 end
@@ -111,7 +117,7 @@ local M = {}
 
 local lists = nil
 
---- @alias action_list { [string]: string }
+--- @alias action_list { [string]: string | function }
 
 ---Setup action lists
 ---@param opts { lists: { [string]: { actions: action_list } | { [string]: { actions: action_list, ft: string | nil }}}}
