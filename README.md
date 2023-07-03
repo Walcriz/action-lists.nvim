@@ -15,7 +15,7 @@ require("action_lists").setup({
                 tsupdate = 'TSUpdate',
                 lua = 'lua print("From lua!")',
 
-                func = function() -- Actions also supports functions
+                func = function() -- Actions also support functions
                     print("Hello from a function")
                 end,
 
